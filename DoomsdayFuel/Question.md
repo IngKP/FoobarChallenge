@@ -55,3 +55,21 @@ solution.solution([[0, 1, 0, 0, 0, 1], [4, 0, 0, 3, 2, 0], [0, 0, 0, 0, 0, 0], [
 Output:
 [0, 3, 2, 9, 14]
 ```
+
+## Approach
+
+There are 2 ways of solving this question that I have tried and both worked well:
+
+### First Method
+
+Using transition matrix of Markov Chains, we can find the next step of any given step as:
+
+`Xn = AXn-1`
+
+where `Xn` is a probability vector of step n and `Xn-1` is for step n-1, where `A` is a transition matrix. (for more info, [link to medium post](https://jadhav-pritish.medium.com/all-about-markov-chains-and-steady-state-probabilities-cdf67253cc04#:~:text=Markov%20Chain%3A&text=Given%20a%20Markov%20chain%2C%20the,distribution%20of%20the%20current%20state.))
+
+For this question, the initial state is fixed at state 0 so we could say that `X0` or our initial step is `[1,0,0,0,0,0]`, now we just need to find the next step over and over again until the probability step stop changing, in this case, 100 times of loop will do for every test cases.
+
+### Second Method
+
+The second method is to calculate the terminal step probability directly using Absorbing Markov Chains. For more detail, [check the lecture from dartmouth.edu](https://math.dartmouth.edu/archive/m20x06/public_html/Lecture14.pdf)
