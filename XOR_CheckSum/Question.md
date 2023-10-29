@@ -42,3 +42,33 @@ solution.solution(17, 4)
 Output:
 14
 ```
+
+## Solution
+
+The real question is how to effectively calculate a large amount of XOR checksum without causing a runtime error.
+
+Let's observe the behaviour of XOR over range(a):
+```
+(0): 0 = 0 (0) [a]
+(0-1): 0 ^ 1 = 1 (1) [1]
+(0-2): 0 ^ 1 ^ 2 = 3 (2+1) [a+1]
+(0-3): 0 ^ 1 ^ 2 ^ 3 = 0 (0) [0]
+
+(0-4): 0 ^ 1 ^ 2 ^ 3 ^ 4 = 4 (4) [a]
+(0-5): 0 ^ 1 ^ 2 ^ 3 ^ 4 ^ 5 = 1 (1) [1]
+(0-6): 0 ^ 1 ^ 2 ^ 3 ^ 4 ^ 5 ^ 6 = 7 (6+1) [a+1]
+(0-7): 0 ^ 1 ^ 2 ^ 3 ^ 4 ^ 5 ^ 6 ^  7 = 0 (0) [0]
+
+(0-8): 0 ^ 1 ^ 2 ^ 3 ^ 4 ^ 5 ^ 6 ^ 7 ^ 8 = 8 (8) [a]
+```
+
+That means XORing from 0 to a can be found by `f(a) = (a, 1, a + 1, 0)[a % 4]`
+
+The checksum from a to b can also be found by:
+```
+f(b) = f(a-1) ^ (a ^ a+1 ^ a+2 .. ^ b)
+
+which means
+
+(a ^ a+1 ^ a+2 .. ^ b) = f(b) ^ f(a-1)
+```
