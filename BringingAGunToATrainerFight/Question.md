@@ -25,3 +25,6 @@ solution.solution([300,275], [150,150], [185,100], 500)
 Output:
 9
 ```
+
+## Solution
+
