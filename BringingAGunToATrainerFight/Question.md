@@ -30,6 +30,6 @@ Output:
 
 Instead of trying to create a physical bullet that can bounce, expanding the space, aka mirroring, should be much easier. 
 
-[mirror_example](mirror_example.png)
+![mirror_example](mirror_example.png)
 
 (how to)
