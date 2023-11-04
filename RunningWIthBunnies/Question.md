@@ -48,3 +48,15 @@ solution.solution([[0, 2, 2, 2, -1], [9, 0, 2, 2, -1], [9, 3, 0, 2, -1], [9, 3, 
 Output:
 [1, 2]
 ```
+
+## Solution
+
+The difficult part of this question is that you could go back and forth if any points have negative time. In order to prevent any complicated situation, simplifying times matrix before trying to find the solution. The idea is 
+
+```
+if direct path a -> c took longer than a -> b -> c, replace the time of
+a -> c with a -> b -> c
+```
+
+Now, we don't need to worry about going back and forth. After that, make sure to check for any loop holes where `times[i][i] < 0`, in that case, we can return all bunnies. Next, we know that the starting point is always 0 and the end point is -1 (the last one in the list), thus, we can shuffle any combination of path from the furthest to the shortest and add ending point and starting point then calculate the time it takes, if it takes too long then try another combination.
+
